@@ -38,7 +38,8 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	#frame = imutils.resize(frame, 300,300)
 
 	(h, w) = frame.shape
-	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
+	#model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
+	blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300), (104.0, 177.0, 123.0))
 	net.setInput(blob)
 	detections = net.forward()
 	c = 0
