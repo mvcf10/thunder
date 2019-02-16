@@ -35,7 +35,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	# grab the raw NumPy array representing the image, then initialize the timestamp
 	# and occupied/unoccupied text
 	image = frame.array
-	frame = imutils.resize(frame, width=420)
+	frame = imutils.resize(frame, 300,300)
 
 	(h, w) = frame.shape[:2]
 	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
