@@ -37,7 +37,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	image = frame.array
 	#frame = imutils.resize(frame, 300,300)
 
-	(h, w) = frame.shape[:2]
+	#(h, w) = frame.shape[:2]
 	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
 	net.setInput(blob)
 	detections = net.forward()
