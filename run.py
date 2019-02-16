@@ -41,7 +41,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	blob = cv2.dnn.blobFromImage(cv2.resize(frame, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
 	net.setInput(blob)
 	detections = net.forward()
-
+	c = 0
 	for i in range(0, detections.shape[2]):
 		confidence = detections[0, 0, i, 2]
 		if confidence < args["confidence"]:
@@ -54,10 +54,10 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 		cv2.rectangle(frame, (startX, startY), (endX, endY),(0, 0, 255), 2)
 		cv2.putText(frame, text, (startX, y),
 		cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
-
+		c = c + 1
  
 	# show the frame
-	cv2.imshow("Frame", image)
+	#cv2.imshow("Frame", image)
 	key = cv2.waitKey(1) & 0xFF
  
 	# clear the stream in preparation for the next frame
@@ -66,5 +66,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
 		break
+	print(c)
 
 cv2.destroyAllWindows()
